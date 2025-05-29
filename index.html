@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Personal Introduction</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Background image with shadow overlay */
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('WhatsApp Image 2025-05-29 at 04.47.20_72772cab.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -2;
+        }
+
+        .shadow-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.8);
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .intro-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            transform: translateY(20px);
+            animation: slideUp 1s ease-out forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .profile-section {
+            margin-bottom: 30px;
+        }
+
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            margin: 0 auto 20px;
+            background-image: image-set('WhatsApp Image 2025-05-29 at 04.47.20_72772cab.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            overflow: hidden;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.05);
+        }
+
+        .name {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .title {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .description {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+
+        .social-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .social-btn:hover::before {
+            left: 100%;
+        }
+
+        .phone {
+            background: linear-gradient(45deg, #34c759, #30d158);
+        }
+
+        .phone:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(52, 199, 89, 0.4);
+        }
+
+        .whatsapp {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+        }
+
+        .whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(37, 211, 102, 0.4);
+        }
+
+        .facebook {
+            background: linear-gradient(45deg, #1877F2, #42a5f5);
+        }
+
+        .facebook:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(24, 119, 242, 0.4);
+        }
+
+        .instagram {
+            background: linear-gradient(45deg, #E4405F, #FCAF45, #833AB4);
+        }
+
+        .instagram:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(228, 64, 95, 0.4);
+        }
+
+        .icon {
+            font-size: 1.2rem;
+        }
+
+        /* Floating particles animation */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: float 6s infinite ease-in-out;
+        }
+
+      
+
+        .particle:nth-child(1) { top: 20%; left: 20%; animation-delay: 0s; }
+        .particle:nth-child(2) { top: 80%; left: 80%; animation-delay: 1s; }
+        .particle:nth-child(3) { top: 40%; left: 90%; animation-delay: 2s; }
+        .particle:nth-child(4) { top: 90%; left: 10%; animation-delay: 3s; }
+        .particle:nth-child(5) { top: 10%; left: 70%; animation-delay: 4s; }
+
+        @media (max-width: 768px) {
+            .intro-card {
+                padding: 30px 20px;
+                margin: 20px;
+            }
+
+            .name {
+                font-size: 2rem;
+            }
+
+            .social-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .social-btn {
+                width: 200px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-container"></div>
+    <div class="shadow-overlay"></div>
+    
+    <!-- Floating particles -->
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+
+    <div class="container">
+        <div class="intro-card">
+            <div class="profile-section">
+              \
+                <h1 class="name">Be Cano Company</h1>
+                <p class="title">For Maintainance</p>
+                
+            </div>
+
+            <div class="social-buttons">
+                <a href="tel:+9647508632032" class="social-btn phone">
+                    <span class="icon">📞</span>
+                    Phone call
+                </a>
+
+                <a href="https://wa.me/+9647508632032" class="social-btn whatsapp" target="_blank">
+                    <span class="icon">📱</span>
+                    WhatsApp
+                </a>
+                
+                <a href="https://facebook.com/YOUR_USERNAME" class="social-btn facebook" target="_blank">
+                    <span class="icon">📘</span>
+                    Facebook
+                </a>
+                
+                <a href="https://instagram.com/https://www.instagram.com/becanocompany?igsh=NDZraHdxODJ6MXV0" class="social-btn instagram" target="_blank">
+                    <span class="icon">📷</span>
+                    Instagram
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const card = document.querySelector('.intro-card');
+            const buttons = document.querySelectorAll('.social-btn');
+            
+            buttons.forEach((btn, index) => {
+                btn.style.animationDelay = `${0.5 + index * 0.1}s`;
+                btn.style.opacity = '0';
+                btn.style.transform = 'translateY(30px)';
+                btn.style.animation = `slideUp 0.6s ease-out ${0.8 + index * 0.1}s forwards`;
+            });
+
+            card.addEventListener('mousemove', function(e) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            card.addEventListener('mouseleave', function() {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+            });
+
+            // Add click effects
+            buttons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
